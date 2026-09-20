@@ -19,6 +19,8 @@ jobs:
           cat wrangler.toml
       - run: npm ci
       - name: Put secret API_KEY
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}      
         run: echo "${{ vars.API_KEY }}" | npx wrangler secret put API_KEY
       - run: npm run deploy
         env:
