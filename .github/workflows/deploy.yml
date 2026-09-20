@@ -18,6 +18,11 @@ jobs:
           sed -i 's/YOUR_D1_DATABASE_ID/0a374d53-5e09-47b7-b9be-2918862cd79d/g' wrangler.toml
           cat wrangler.toml
       - run: npm ci
+      - name: Init remote D1 database
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ vars.CLOUDFLARE_API_TOKEN }}
+        run: npm run db:init:remote      
       - name: Put secret API_KEY
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}      
