@@ -14,7 +14,7 @@ jobs:
       - name: Replace wrangler.toml content
         run: |
           ls -la
-          sed -i 's/YOUR_D1_DATABASE_ID/"${{ vars.D1_DATABASE_ID }}"/g' wrangler.toml
+          sed -i 's/YOUR_D1_DATABASE_ID/${{ vars.D1_DATABASE_ID }}/g' wrangler.toml
           cat wrangler.toml
       - run: npm ci
       - name: Init remote D1 database
