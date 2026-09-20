@@ -20,7 +20,7 @@ jobs:
       - name: Init remote D1 database
         continue-on-error: true
         env:
-          CLOUDFLARE_API_TOKEN: ${{ vars.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npm run db:init:remote      
       - name: Put secret API_KEY
         env:
