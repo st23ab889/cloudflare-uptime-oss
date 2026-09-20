@@ -13,9 +13,13 @@ jobs:
           node-version: 24
       - name: Replace wrangler.toml content
         run: |
+          ls -la
           sed -i 's/uptime-monitor/cloudflare-uptime-db/g' wrangler.toml
           sed -i 's/YOUR_D1_DATABASE_ID/0a374d53-5e09-47b7-b9be-2918862cd79d/g' wrangler.toml
+          cat wrangler.toml
       - run: npm ci
+      - name: Put secret API_KEY
+        run: echo "${{ vars.API_KEY }}" | npx wrangler secret put API_KEY
       - run: npm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
