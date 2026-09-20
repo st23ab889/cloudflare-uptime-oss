@@ -14,8 +14,7 @@ jobs:
       - name: Replace wrangler.toml content
         run: |
           ls -la
-          sed -i 's/uptime-monitor/cloudflare-uptime-db/g' wrangler.toml
-          sed -i 's/YOUR_D1_DATABASE_ID/0a374d53-5e09-47b7-b9be-2918862cd79d/g' wrangler.toml
+          sed -i 's/YOUR_D1_DATABASE_ID/"${{ vars.D1_DATABASE_ID }}"/g' wrangler.toml
           cat wrangler.toml
       - run: npm ci
       - name: Init remote D1 database
